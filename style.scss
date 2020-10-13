@@ -1,0 +1,637 @@
+@import "./default";
+@import "./mixin";
+
+html {
+    font-size: 62.5%;
+}
+
+// *, *::after, *::before {
+//     box-sizing: border-box;
+//   }
+
+* {
+    box-sizing: border-box;
+    font-family: 微軟正黑體;
+}
+
+body {
+    margin: 0;
+    &::before {
+        content: "mobile";
+        display: none;
+    }
+}
+
+// loading
+
+.loading-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background:#ACE6F2;
+    z-index: 9999;
+}
+
+
+.loading {
+    position: absolute;
+    width: 250px;
+    height: 250px;
+    top: 50%;
+    left: 50%;
+    margin-top: -125px;
+    margin-left: -125px;
+    border-radius: 200px;
+}
+
+//navbar
+.navbar {
+    width: 100%;
+    // height: 100px;
+    // background-color: burlywood;
+    background-image: url(./img/01-banner素材/nav-05.svg);
+    // background-color:rgba($color: #FFF8A6, $alpha: 0.6);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-size: 120%;
+    .container {
+        position: relative;
+        @include container();
+        display: flex;
+        .logo {
+            width: 60%;
+            img {
+                width: 80%;
+            }
+        }
+        .btn-group {
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            margin: auto;
+            .btn {
+                @include btn();
+                &:hover {
+                    text-decoration: underline;
+                    transition: 0.5s;
+                }
+            }
+        }
+    }
+}
+
+// menu-wrap漢堡條
+
+:root {
+    --primary-color: rgba($color: #fff8a6, $alpha: 0.6);
+    --overlay-color: rgba(24, 39, 51, 0.85);
+    --menu-speed: 0.75s;
+}
+
+/* MENU STYLES */
+.menu-wrap {
+    border: blanchedalmond;
+    position: absolute;
+    // position: fixed;
+    top: 0;
+    right: 15px;
+    z-index: 99;
+    display: none;
+}
+
+.menu-wrap .toggler {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    cursor: pointer;
+    width: 50px;
+    height: 50px;
+    opacity: 0;
+}
+
+.menu-wrap .hamburger {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    width: 50px;
+    height: 50px;
+    padding: 1rem;
+    background: var(--primary-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Hamburger Line */
+.menu-wrap .hamburger > div {
+    position: relative;
+    flex: none;
+    width: 100%;
+    height: 2px;
+    background: brown;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.4s ease;
+}
+
+/* Hamburger Lines - Top & Bottom */
+.menu-wrap .hamburger > div::before,
+.menu-wrap .hamburger > div::after {
+    content: "";
+    position: absolute;
+    z-index: 1;
+    top: -10px;
+    width: 100%;
+    height: 2px;
+    background: inherit;
+}
+
+/* Moves Line Down */
+.menu-wrap .hamburger > div::after {
+    top: 10px;
+}
+
+/* Toggler Animation */
+.menu-wrap .toggler:checked + .hamburger > div {
+    transform: rotate(135deg);
+}
+
+/* Turns Lines Into X */
+.menu-wrap .toggler:checked + .hamburger > div:before,
+.menu-wrap .toggler:checked + .hamburger > div:after {
+    top: 0;
+    transform: rotate(90deg);
+}
+
+/* Rotate On Hover When Checked */
+.menu-wrap .toggler:checked:hover + .hamburger > div {
+    transform: rotate(225deg);
+}
+
+/* Show Menu */
+.menu-wrap .toggler:checked ~ .menufull {
+    visibility: visible;
+}
+
+.menu-wrap .toggler:checked ~ .menufull > div {
+    transform: scale(1);
+    transition-duration: var(--menu-speed);
+}
+
+.menu-wrap .toggler:checked ~ .menufull > div > div {
+    opacity: 1;
+    transition: opacity 0.4s ease 0.4s;
+}
+
+//
+.menu-wrap .hamburger.active > div {
+    transform: rotate(135deg);
+}
+
+.menu-wrap .hamburger.active > div {
+    transform: rotate(135deg);
+}
+
+/* Turns Lines Into X */
+.menu-wrap .hamburger.active > div:before,
+.menu-wrap .hamburger.active > div:after {
+    top: 0;
+    transform: rotate(90deg);
+}
+
+/* Rotate On Hover When Checked */
+.menu-wrap .hamburger.active:hover > div {
+    transform: rotate(225deg);
+}
+
+/* Show Menu */
+.menu-wrap .hamburger.active ~ .menufull {
+    visibility: visible;
+}
+
+.menu-wrap .hamburger.active ~ .menufull > div {
+    transform: scale(1);
+    transition-duration: var(--menu-speed);
+}
+
+.menu-wrap .hamburger.active ~ .menufull > div > div {
+    opacity: 1;
+    transition: opacity 0.4s ease 0.4s;
+}
+//
+
+.menu-wrap .menufull {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    visibility: hidden;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.menu-wrap .menufull > div {
+    background: var(--overlay-color);
+    border-radius: 50%;
+    width: 200vw;
+    height: 200vw;
+    display: flex;
+    flex: none;
+    align-items: center;
+    justify-content: center;
+    transform: scale(0);
+    transition: all 0.4s ease;
+}
+
+.menu-wrap .menufull > div > div {
+    text-align: center;
+    max-width: 90vw;
+    max-height: 100vh;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.menu-wrap .menufull > div > div > ul > li {
+    list-style: none;
+    color: #fff;
+    font-size: 1.5rem;
+    padding: 1rem;
+}
+
+.menu-wrap .menufull > div > div > ul > li > a {
+    color: inherit;
+    text-decoration: none;
+    transition: color 0.4s ease;
+}
+
+// 滿版圖
+.banner {
+    background-image: url("./img/01-banner素材/炸物擺盤.jpeg");
+    background-size: cover;
+    background-position: center;
+    width: 100%;
+    height: 100vh;
+    margin: auto;
+}
+
+// 大標題
+.title {
+    width: 15%;
+    margin: auto;
+    font-size: 3rem;
+    letter-spacing: 10px;
+    text-align: center;
+    font-weight: 900;
+    color: white;
+    // padding: 0.8rem ;
+    background-color: rgba(228, 113, 60, 0.8);
+}
+
+.about-title {
+    width: 25%;
+}
+
+#Anchor-point1,
+#Anchor-point3,
+#Anchor-point4 {
+    margin: 8% 0;
+    background: rgba(228, 180, 60, 0);
+}
+
+// 關於韓吉香
+
+// .text-box{
+//     width: 150px;
+//     background-color: orange;
+//     padding: 0 0 5;
+// }
+
+// 小標題文字
+h2 {
+    width: 140px;
+    height: 50px;
+    text-align: center;
+    background-color: black;
+    color: white;
+    position: relative;
+    font-size: 3rem;
+    line-height: 50px;
+    // z-index: 50;
+}
+
+h2::before {
+    content: " ";
+    width: 140px;
+    height: 50px;
+    background-color: orange;
+    position: absolute;
+    left: -5px;
+    top: -5px;
+    z-index: -1;
+}
+
+// 理念和願景
+.philosophy,
+.vision {
+    padding: 20px 15px 20px 25px;
+    font-size: 2.5rem;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.8);
+    letter-spacing: 8px;
+}
+
+// 嚴選食材
+.vegetable_img {
+    background-image: url(./img/04-嚴選食材/當季蔬食/vegetable.jpg);
+    @include ingredients();
+    margin-left: -10%;
+}
+
+// .vegetable_img::before {
+//     @include before();
+//     left: -60px;
+//     top: -45px;
+//     z-index: -1;
+// }
+
+.vegetable_text {
+    margin-top: 5%;
+    margin-left: 10%;
+    font-size: 2.5rem;
+}
+
+.flour_img {
+    background-image: url(./img/04-嚴選食材/炸粉/flour.jpg);
+    @include ingredients();
+    margin-left: -10%;
+}
+
+// .flour_img::before {
+//     @include before();
+//     left: -60px;
+//     top: -45px;
+//     z-index: -1;
+// }
+
+.flour_text {
+    margin-left: 10%;
+    font-size: 2.5rem;
+}
+
+.oil_img {
+    background-image: url(./img/04-嚴選食材/油/oil.png);
+    @include ingredients();
+    margin-right: -10%;
+}
+
+// .oil_img::before {
+//     @include before();
+//     right: -60px;
+//     top: -45px;
+//     z-index: -1;
+// }
+
+.oil_text {
+    margin-right: 10%;
+    font-size: 2.5rem;
+}
+
+// 黃金美味
+
+// .swiper-container {
+
+// }
+.menu {
+    height: 100vh;
+    background-image: url("./img/05-黃金美味/菜單背景/調味1.jpg");
+    background-position: center;
+    background-size: cover;
+    position: relative;
+}
+
+.menu-text {
+    // width: 50%;
+    margin: auto;
+    height: 60px;
+    color: white;
+    font-size: 20px;
+}
+.mask {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    padding-top: 100px;
+    .swiper-slide.swiper-slide-next img {
+        transition: 0.5s;
+        transform: scale(1.8);
+    }
+}
+
+// .swiper-slide.swiper-slide-next img {
+//     transition: 0.5s;
+//     transform: scale(1.8);
+// }
+
+.menu-text-content {
+    width: 50%;
+    margin: auto;
+}
+
+h1 {
+    color: brown;
+    font-weight: 900;
+    font-size: 3rem;
+}
+
+.product {
+    padding: 25px;
+    font-size: 20px;
+    font-weight: 900;
+    width: 50%;
+    // height: 100%;
+    background-color: rgba(255, 255, 255, 0.8);
+    letter-spacing: 8px;
+    display: none;
+    position: absolute;
+    bottom: 20px;
+    left: 25%;
+}
+
+.product.active {
+    display: block;
+}
+
+.menu-swiper {
+    margin-bottom: 5%;
+    height: 60vh;
+}
+
+// .swiper-button-next,
+// .swiper-button-prev{
+//     position: relative;
+//     top: 50%;
+// }
+
+// 關於韓吉香特效
+@media only screen and (min-width: 1050px) {
+    body::before {
+        content: "desktop";
+    }
+}
+
+@media only screen and (min-width: 1050px) {
+    body[data-hijacking="on"] {
+        overflow: hidden;
+    }
+}
+
+.cd-section {
+    height: 100vh;
+    z-index: 99;
+    .about {
+        overflow: hidden;
+        height: 100vh;
+        padding-top: 8%;
+    }
+}
+
+.cd-section h2 {
+    width: 200px;
+    height: 50px;
+    text-align: center;
+    background-color: black;
+    color: white;
+    &:before {
+        content: " ";
+        width: 200px;
+        height: 40px;
+        background-color: orange;
+        position: absolute;
+        left: -5px;
+        top: -5px;
+        z-index: -1;
+    }
+    /* position: relative;  */
+    /* line-height: 100vh; */
+    /* text-align: center; */
+    // font-size: 4rem;
+}
+
+[data-animation="opacity"] .cd-section > div {
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+[data-animation="opacity"] .cd-section:first-of-type > div {
+    background-image: url("./img/03-關於韓吉香/蔬菜圖.jpg");
+}
+
+[data-animation="opacity"] .cd-section:nth-of-type(2) > div {
+    background-image: url("./img/03-關於韓吉香/b1wh-listing.jpg");
+}
+
+@media only screen and (min-width: 1050px) {
+    .cd-section h2 {
+        font-size: 3.4rem;
+        font-weight: 300;
+        line-height: 40px;
+    }
+
+    [data-hijacking="off"] .cd-section > div {
+        opacity: 0;
+    }
+
+    [data-animation="opacity"] .cd-section.visible > div {
+        z-index: 1;
+    }
+}
+
+@media only screen and (min-width: 1050px) {
+    .cd-section:first-of-type > div::before {
+        display: none;
+    }
+}
+
+@media only screen and (min-width: 1050px) {
+    .cd-section > div {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        -webkit-transform: translateZ(0);
+        -moz-transform: translateZ(0);
+        -ms-transform: translateZ(0);
+        -o-transform: translateZ(0);
+        transform: translateZ(0);
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
+    }
+
+    [data-hijacking="on"] .cd-section > div {
+        position: absolute;
+    }
+
+    [data-animation="rotate"] .cd-section > div {
+        -webkit-transform-origin: center bottom;
+        -moz-transform-origin: center bottom;
+        -ms-transform-origin: center bottom;
+        -o-transform-origin: center bottom;
+        transform-origin: center bottom;
+    }
+}
+
+.seasoning-text {
+    display: block;
+    font-size: 20px;
+    font-weight: 900;
+    text-align: center;
+    margin: auto;
+}
+.seasoning {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    img {
+        display: block;
+        margin: auto;
+    }
+    span {
+        display: block;
+        font-size: 20px;
+        font-weight: 900;
+        text-align: center;
+    }
+}
+
+// 頁尾
+footer {
+    width: 100%;
+    text-align: center;
+    font-size: 0.5vw;
+    line-height: 25px;
+    letter-spacing: 1px;
+    background-color: orange;
+    height: 50px;
+}
+
+.display_none {
+    display: none;
+}
+
+
+.afd,
+.dsafd{
+    &::hover{
+        width: 50px;
+    }
+}
