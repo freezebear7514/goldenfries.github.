@@ -24,7 +24,7 @@ body::before {
   left: 0;
   width: 100%;
   height: 100%;
-  background: #ACE6F2;
+  background: #fff8a6;
   z-index: 9999;
 }
 
@@ -62,7 +62,7 @@ body::before {
 }
 
 .navbar .container .logo img {
-  width: 80%;
+  width: 100%;
 }
 
 .navbar .container .btn-group {
