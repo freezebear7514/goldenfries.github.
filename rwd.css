@@ -41,13 +41,13 @@
     top: -40px;
     right: 80px;
   }
-  .menu {
+  .menu1 {
     height: 90vh;
   }
-  .menu .mask {
+  .menu1 .mask {
     padding-top: 50px;
   }
-  .menu .mask .product {
+  .menu1 .mask .product {
     width: 60%;
     left: 20%;
   }
@@ -70,7 +70,7 @@
   .navbar .container .menu-wrap {
     display: block;
   }
-  .menu {
+  .menu1 {
     height: 70vh;
   }
   .swiper-button-next,
@@ -98,7 +98,7 @@
   .product h1 {
     font-size: 25px;
   }
-  .menu {
+  .menu1 {
     height: 60%;
   }
   .swiper-button-next,
@@ -125,10 +125,10 @@
   .cd-section .about {
     height: 50%;
   }
-  .menu {
+  .menu1 {
     height: 50vh;
   }
-  .menu .mask .menu-text-content .product {
+  .menu1 .mask .menu-text-content .product {
     left: 5%;
     width: 90%;
   }
@@ -138,13 +138,6 @@
     width: 400px;
     height: 400px;
     margin: 0;
-  }
-  .menu-wrap {
-    right: 40px;
-  }
-  .menu-wrap .toggler {
-    width: 15px;
-    height: 10px;
   }
 }
 

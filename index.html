@@ -50,7 +50,41 @@
                 <a class="btn" href="#Anchor-point4">黃金美味</a>
                 <a class="btn" href="#Anchor-point5">尋找韓吉</a>
             </div>
+
+            <!-- 漢堡條 -->
             <div class="menu-wrap">
+                <div class="toggler"> </div>
+                <div class="hamburger">
+                    <div class="hamburger-line"></div>
+                </div>
+                <div class="menu">
+                    <div>
+                        <div>
+                            <ul>
+                                <li><a href="#Anchor-point1" data-text="Home">
+                                        <span>
+                                            <small>01</small>
+                                            好評推薦</span></a></li>
+                                <li><a href="#Anchor-point2" data-text="About"><span>
+                                            <small>02</small>
+                                            關於韓吉香</span></a></li>
+                                <li><a href="#Anchor-point3" data-text="Portfolio"><span>
+                                            <small>03</small>
+                                            嚴選食材</span></a></li>
+                                <li><a href="#Anchor-point4" data-text="Contact"><span>
+                                            <small>04</small>
+                                            黃金美味</span></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+            <!-- <div class="menu-wrap">
                 <input type="checkbox" class="toggler">
                 <div class="hamburger">
                     <div></div>
@@ -68,7 +102,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
         </div>
 
     </nav>
@@ -183,7 +217,7 @@
     <hr class="my-5">
     <!-- 黃金美味 -->
     <a id="Anchor-point4" href=""></a>
-    <div class="menu">
+    <div class="menu1">
         <div class="mask">
             <div class="title">黃金美味</div>
             <div class="swiper-container menu-swiper">
@@ -373,9 +407,15 @@
     <script>
         AOS.init();
 
+        // 漢堡條
+        $(document).ready(function () {
+            $('.toggler').click(function () {
+                $('.toggler').toggleClass('active')
+            });
+        });
 
-           // loading時間
-           $(document).ready(function () {
+        // loading時間
+        $(document).ready(function () {
             setTimeout(function () {
                 $(".loading-wrapper").fadeOut(500);
             }, 2000);

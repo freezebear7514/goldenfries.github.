@@ -92,26 +92,21 @@ body::before {
   transition: 0.5s;
 }
 
-:root {
-  --primary-color: rgba($color: #fff8a6, $alpha: 0.6);
-  --overlay-color: rgba(24, 39, 51, 0.85);
-  --menu-speed: 0.75s;
-}
-
-/* MENU STYLES */
+/* 漢堡條 */
 .menu-wrap {
-  border: blanchedalmond;
-  position: absolute;
-  top: 0;
-  right: 15px;
-  z-index: 99;
   display: none;
+  position: fixed;
+  top: 0;
+  right: 5%;
+  z-index: 1;
+  /* Rotate On Hover When Checked */
+  /* Show Menu */
 }
 
 .menu-wrap .toggler {
   position: absolute;
   top: 0;
-  left: 0;
+  right: 0;
   z-index: 2;
   cursor: pointer;
   width: 50px;
@@ -122,12 +117,11 @@ body::before {
 .menu-wrap .hamburger {
   position: absolute;
   top: 0;
-  left: 0;
+  right: 0;
   z-index: 1;
   width: 50px;
   height: 50px;
   padding: 1rem;
-  background: var(--primary-color);
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -137,17 +131,17 @@ body::before {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+  /* Hamburger Line */
 }
 
-/* Hamburger Line */
-.menu-wrap .hamburger > div {
+.menu-wrap .hamburger .hamburger-line {
   position: relative;
   -webkit-box-flex: 0;
       -ms-flex: none;
           flex: none;
   width: 100%;
-  height: 2px;
-  background: brown;
+  height: 3px;
+  background: #301a01;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -161,104 +155,27 @@ body::before {
   transition: all 0.4s ease;
 }
 
-/* Hamburger Lines - Top & Bottom */
-.menu-wrap .hamburger > div::before,
-.menu-wrap .hamburger > div::after {
+.menu-wrap .hamburger .hamburger-line::before {
   content: "";
   position: absolute;
   z-index: 1;
   top: -10px;
   width: 100%;
-  height: 2px;
+  height: 3px;
   background: inherit;
 }
 
-/* Moves Line Down */
-.menu-wrap .hamburger > div::after {
+.menu-wrap .hamburger .hamburger-line::after {
+  content: "";
+  position: absolute;
+  z-index: 1;
   top: 10px;
+  width: 100%;
+  height: 3px;
+  background: inherit;
 }
 
-/* Toggler Animation */
-.menu-wrap .toggler:checked + .hamburger > div {
-  -webkit-transform: rotate(135deg);
-          transform: rotate(135deg);
-}
-
-/* Turns Lines Into X */
-.menu-wrap .toggler:checked + .hamburger > div:before,
-.menu-wrap .toggler:checked + .hamburger > div:after {
-  top: 0;
-  -webkit-transform: rotate(90deg);
-          transform: rotate(90deg);
-}
-
-/* Rotate On Hover When Checked */
-.menu-wrap .toggler:checked:hover + .hamburger > div {
-  -webkit-transform: rotate(225deg);
-          transform: rotate(225deg);
-}
-
-/* Show Menu */
-.menu-wrap .toggler:checked ~ .menufull {
-  visibility: visible;
-}
-
-.menu-wrap .toggler:checked ~ .menufull > div {
-  -webkit-transform: scale(1);
-          transform: scale(1);
-  -webkit-transition-duration: var(--menu-speed);
-          transition-duration: var(--menu-speed);
-}
-
-.menu-wrap .toggler:checked ~ .menufull > div > div {
-  opacity: 1;
-  -webkit-transition: opacity 0.4s ease 0.4s;
-  transition: opacity 0.4s ease 0.4s;
-}
-
-.menu-wrap .hamburger.active > div {
-  -webkit-transform: rotate(135deg);
-          transform: rotate(135deg);
-}
-
-.menu-wrap .hamburger.active > div {
-  -webkit-transform: rotate(135deg);
-          transform: rotate(135deg);
-}
-
-/* Turns Lines Into X */
-.menu-wrap .hamburger.active > div:before,
-.menu-wrap .hamburger.active > div:after {
-  top: 0;
-  -webkit-transform: rotate(90deg);
-          transform: rotate(90deg);
-}
-
-/* Rotate On Hover When Checked */
-.menu-wrap .hamburger.active:hover > div {
-  -webkit-transform: rotate(225deg);
-          transform: rotate(225deg);
-}
-
-/* Show Menu */
-.menu-wrap .hamburger.active ~ .menufull {
-  visibility: visible;
-}
-
-.menu-wrap .hamburger.active ~ .menufull > div {
-  -webkit-transform: scale(1);
-          transform: scale(1);
-  -webkit-transition-duration: var(--menu-speed);
-          transition-duration: var(--menu-speed);
-}
-
-.menu-wrap .hamburger.active ~ .menufull > div > div {
-  opacity: 1;
-  -webkit-transition: opacity 0.4s ease 0.4s;
-  transition: opacity 0.4s ease 0.4s;
-}
-
-.menu-wrap .menufull {
+.menu-wrap .menu {
   position: fixed;
   top: 0;
   left: 0;
@@ -277,8 +194,8 @@ body::before {
           justify-content: center;
 }
 
-.menu-wrap .menufull > div {
-  background: var(--overlay-color);
+.menu-wrap .menu > div {
+  background: rgba(5, 3, 9, 0.9);
   border-radius: 50%;
   width: 200vw;
   height: 200vw;
@@ -298,9 +215,10 @@ body::before {
           transform: scale(0);
   -webkit-transition: all 0.4s ease;
   transition: all 0.4s ease;
+  z-index: 15;
 }
 
-.menu-wrap .menufull > div > div {
+.menu-wrap .menu > div > div {
   text-align: center;
   max-width: 90vw;
   max-height: 100vh;
@@ -309,18 +227,74 @@ body::before {
   transition: opacity 0.4s ease;
 }
 
-.menu-wrap .menufull > div > div > ul > li {
+.menu-wrap .menu > div > div ul li {
   list-style: none;
   color: #fff;
-  font-size: 1.5rem;
+  font-size: 1rem;
   padding: 1rem;
 }
 
-.menu-wrap .menufull > div > div > ul > li > a {
+.menu-wrap .menu > div > div ul li a {
   color: inherit;
   text-decoration: none;
   -webkit-transition: color 0.4s ease;
   transition: color 0.4s ease;
+}
+
+.menu-wrap .menu > div > div ul li a span {
+  font-size: 40px;
+  color: white;
+  position: relative;
+  padding: 0 10px;
+}
+
+.menu-wrap .menu > div > div ul li a span small {
+  position: absolute;
+  bottom: 10px;
+  left: -25px;
+  font-size: 20px;
+  color: #666666;
+  border-bottom: 1px solid #666666;
+}
+
+.menu-wrap .toggler.active ~ .hamburger > div {
+  -webkit-transform: rotate(135deg);
+          transform: rotate(135deg);
+  /* Turns Lines Into X */
+}
+
+.menu-wrap .toggler.active ~ .hamburger > div::before {
+  top: 0;
+  -webkit-transform: rotate(90deg);
+          transform: rotate(90deg);
+}
+
+.menu-wrap .toggler.active ~ .hamburger > div::after {
+  top: 0;
+  -webkit-transform: rotate(90deg);
+          transform: rotate(90deg);
+}
+
+.menu-wrap .toggler.active:hover ~ .hamburger > div {
+  -webkit-transform: rotate(225deg);
+          transform: rotate(225deg);
+}
+
+.menu-wrap .toggler.active ~ .menu {
+  visibility: visible;
+}
+
+.menu-wrap .toggler.active ~ .menu > div {
+  -webkit-transform: scale(1);
+          transform: scale(1);
+  -webkit-transition-duration: var(--menu-speed);
+          transition-duration: var(--menu-speed);
+}
+
+.menu-wrap .toggler.active ~ .menu > div > div {
+  opacity: 1;
+  -webkit-transition: opacity 0.4s ease 0.4s;
+  transition: opacity 0.4s ease 0.4s;
 }
 
 .banner {
@@ -428,7 +402,7 @@ h2::before {
   font-size: 2.5rem;
 }
 
-.menu {
+.menu1 {
   height: 100vh;
   background-image: url("./img/05-黃金美味/菜單背景/調味1.jpg");
   background-position: center;
@@ -633,8 +607,8 @@ footer {
   display: none;
 }
 
-.afd::hover,
-.dsafd::hover {
+.afd:hover,
+.dsafd:hover {
   width: 50px;
 }
 /*# sourceMappingURL=style.css.map */
